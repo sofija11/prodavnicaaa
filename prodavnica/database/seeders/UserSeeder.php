@@ -51,7 +51,6 @@ class UserSeeder extends Seeder
                 'password' =>  md5('miiiia_078'),
                 'role_id' => Role::all()->random()->id,
             ],
-            
         ]);
     }
 }
