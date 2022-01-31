@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,8 @@ Route::get('/loginPage', function () {
     return view('login');
 });
 
+Route::resource('/categories', CategoryController::class);
+
 Route::get('/users', [UserController::class, 'index'])->name('users')->middleware('is_admin');
 Route::post('/login', [AuthController::class, 'loginUser'])->name('loginUser');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
