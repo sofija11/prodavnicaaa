@@ -25,8 +25,8 @@ class AuthController extends Controller
             $sesion = $request->session()->get('user');
             if ($sesion->role_id === $this->getIdFromRole('Radnik')) {
                 return view('products');
-            } else{
-                return view('users');
+            } else {
+                return redirect()->route('users');
             }
         } catch(Exception $ex) {
             Log::error($ex);

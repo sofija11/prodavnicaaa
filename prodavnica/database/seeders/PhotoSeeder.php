@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -19,10 +20,12 @@ class PhotoSeeder extends Seeder
             [
                 'product_id' => Product::all()->random()->id,
                 'image' => 'imagee1.jpg',
+                'created_at' => Carbon::now(),
             ],
             [
                 'product_id' => Product::all()->random()->id,
                 'image' => 'imagee2.jpg',
+                'created_at' => Carbon::now(),
             ],
         ]);
     }

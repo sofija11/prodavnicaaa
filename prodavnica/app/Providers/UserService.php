@@ -3,11 +3,22 @@
 namespace App\Providers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 
 
 class UserService {
-    
+        
+    /**
+     * getAllUsers
+     *
+     * @return Collection
+     */
+    public static function getAllUsers(): Collection {
+        $users = User::with('role')->get();
+        return $users;
+    }
+
     /**
      * loginUser
      *

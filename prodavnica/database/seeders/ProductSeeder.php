@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +24,7 @@ class ProductSeeder extends Seeder
                 'description' => 'description 1',
                 'price' => 123,
                 'category_id' => Category::all()->random()->id,
+                'created_at' => Carbon::now(),
             ],
             [
                 'name' => 'Product 2',
@@ -30,6 +32,7 @@ class ProductSeeder extends Seeder
                 'description' => 'description 2',
                 'price' => 1293,
                 'category_id' => Category::all()->random()->id,
+                'created_at' => Carbon::now(),
             ],
             [
                 'name' => 'Product 3',
@@ -37,6 +40,7 @@ class ProductSeeder extends Seeder
                 'description' => 'description 3',
                 'price' => 8783,
                 'category_id' => Category::all()->random()->id,
+                'created_at' => Carbon::now(),
             ],
             [
                 'name' => 'Product 4',
@@ -44,6 +48,7 @@ class ProductSeeder extends Seeder
                 'description' => 'description 4',
                 'price' => 19977,
                 'category_id' => Category::all()->random()->id,
+                'created_at' => Carbon::now(),
             ],
             [
                 'name' => 'Product 5',
@@ -51,6 +56,7 @@ class ProductSeeder extends Seeder
                 'description' => 'description 5',
                 'price' => 39998,
                 'category_id' => Category::all()->random()->id,
+                'created_at' => Carbon::now(),
             ]
         ]);
     }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -22,6 +23,7 @@ class UserSeeder extends Seeder
                 'username' => 'jane098',
                 'password' =>  md5('jane_987'),
                 'role_id' => Role::all()->random()->id,
+                'created_at' => Carbon::now(),
             ],
             [
                 'firstname' => 'Peter',
@@ -29,6 +31,7 @@ class UserSeeder extends Seeder
                 'username' => 'peet_97',
                 'password' =>  md5('pet_98'),
                 'role_id' => Role::all()->random()->id,
+                'created_at' => Carbon::now(),
             ],
             [
                 'firstname' => 'Maria',
@@ -36,6 +39,7 @@ class UserSeeder extends Seeder
                 'username' => 'mai00_978',
                 'password' => md5('stoi_m08'),
                 'role_id' => Role::all()->random()->id,
+                'created_at' => Carbon::now(),
             ],
             [
                 'firstname' => 'Sofia',
@@ -43,6 +47,7 @@ class UserSeeder extends Seeder
                 'username' => 'sofi98',
                 'password' =>  md5('sofi_98'),
                 'role_id' => Role::all()->random()->id,
+                'created_at' => Carbon::now(),
             ],
             [
                 'firstname' => 'Mia',
@@ -50,6 +55,7 @@ class UserSeeder extends Seeder
                 'username' => 'mii_98',
                 'password' =>  md5('miiiia_078'),
                 'role_id' => Role::all()->random()->id,
+                'created_at' => Carbon::now(),
             ],
         ]);
     }

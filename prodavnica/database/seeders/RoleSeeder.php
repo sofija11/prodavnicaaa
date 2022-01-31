@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,9 +18,11 @@ class RoleSeeder extends Seeder
         DB::table('roles')->insert([
             [
                 'name' => 'Admin',
+                'created_at' => Carbon::now(),
             ],
             [
                 'name' => 'Radnik',
+                'created_at' => Carbon::now(),
             ],
         ]);
     }
