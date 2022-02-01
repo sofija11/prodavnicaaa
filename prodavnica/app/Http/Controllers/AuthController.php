@@ -18,6 +18,10 @@ class AuthController extends Controller
         'Radnik' => 2,
     ];
 
+    public function index(){
+        return view('login');
+    }
+
     public function loginUser(LoginRequest $request){
         $username = $request->input('username');
         $password = $request->input('password');
@@ -26,7 +30,7 @@ class AuthController extends Controller
             $request->session()->put('user', $user);
             $sesion = $request->session()->get('user');
             if ($sesion->role_id === $this->getIdFromRole('Radnik')) {
-                return view('products');
+                return redirect('/products');
             } else {
                 return redirect()->route('users');
             }

@@ -25,12 +25,13 @@ class UserSeeder extends Seeder
                 'role_id' => Role::all()->random()->id,
                 'created_at' => Carbon::now(),
             ],
+            //for test radnik
             [
                 'firstname' => 'Peter',
                 'lastname' => 'Ostin',
                 'username' => 'peet_97',
                 'password' =>  md5('pet_98'),
-                'role_id' => Role::all()->random()->id,
+                'role_id' => 2,
                 'created_at' => Carbon::now(),
             ],
             [
@@ -41,12 +42,13 @@ class UserSeeder extends Seeder
                 'role_id' => Role::all()->random()->id,
                 'created_at' => Carbon::now(),
             ],
+            //for test ADMINA
             [
                 'firstname' => 'Sofia',
                 'lastname' => 'Vitorovic',
                 'username' => 'sofi98',
                 'password' =>  md5('sofi_98'),
-                'role_id' => Role::all()->random()->id,
+                'role_id' => 1,
                 'created_at' => Carbon::now(),
             ],
             [

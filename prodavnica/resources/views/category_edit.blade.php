@@ -6,7 +6,7 @@
             @csrf
             @method('PUT')
             <div class="form-group">
-                <input type = "text" name = "category_edit" value = " " placeholder = "Category name *" class = "form-control">
+                <input type = "text" name = "category_edit" value = "{{ $category->name }}" placeholder = "Category name *" class = "form-control">
             </div>
             <div class="form-group">
                 <button type = "submit" class = "btn btn-primary"> UPDATE </button>

@@ -92,7 +92,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::with('photos')->find($id);
+        $categories = CategoryService::getAllCategories();
+        return view('product_edit', ['product' => $product,'categories' => $categories]);
     }
 
     /**
@@ -104,7 +106,35 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product_name_new = $request->input('product_name_edit');
+        $code_new = $request->input('code_edit');
+        $description_new = $request->input('description_edit');
+        $price_new = $request->input('price_edit');
+        $category_new = $request->input('categories_edit');
+        $id_product = $product->id;
+
+        $product->name =  $product_name_new;
+        $product->code = $code_new;
+        $product->description = $description_new;
+        $product->price = $price_new;
+        $product->category_id = $category_new;
+        $product->save();
+
+        if ($request->file('images_edit') !== NULL) {
+            foreach ($request->file('images_edit') as $imagefileNew) {
+                $image = new Photo();
+                $date = date_create();
+                $time = date_format($date, 'YmdHis');
+                $imageName = $time . '-' . $imagefileNew->getClientOriginalName();
+                $imagefileNew->move(base_path() . '/public/uploads/', $imageName);
+                $image->image = $imageName;
+                $image->product_id = $id_product;
+                $image->save();
+            }
+        }
+
+        return redirect('/products');
     }
 
     /**
