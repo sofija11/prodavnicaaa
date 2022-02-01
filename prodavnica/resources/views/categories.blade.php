@@ -46,7 +46,9 @@
                     <th> {{ $category->deleted_at !== null ? date('d/m/Y', strtotime($category->deleted_at)) : 'no_changes' }} </th>
                     @if ($session !== null && $session->role_id === 1 )
                         <th>
-                            <button type="submit" class="categories_table__update btn btn-primary"> UPDATE </button>
+                            <form action ="{{ route('categories.edit',[ $category->id ]) }}" method="GET">
+                                    <input type="submit" value="UPDATE" class="btn btn-primary"></button>
+                            </form>
                         </th>
                         <th> 
                             <button type="submit" data-token="{{ csrf_token() }}" data-id = "{{ $category->id }}" class="categories_table__delete btn btn-primary"> DELETE </button>

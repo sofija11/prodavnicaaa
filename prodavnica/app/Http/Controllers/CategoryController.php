@@ -62,7 +62,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('category_edit', ['category' => $category]);
     }
 
     /**
@@ -73,8 +74,13 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    { 
+        $category = Category::findOrFail($id);
+        $category_new_name = $request->input('category_edit');
+        $category->name = $category_new_name;
+        $category->save();
+
+        return redirect('/categories');
     }
 
     /**
@@ -86,6 +92,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
-        $category-> delete();
+        $category->delete();
+
     }
 }
