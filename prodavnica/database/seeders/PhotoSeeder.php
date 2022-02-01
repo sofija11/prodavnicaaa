@@ -27,6 +27,16 @@ class PhotoSeeder extends Seeder
                 'image' => 'imagee2.jpg',
                 'created_at' => Carbon::now(),
             ],
+            [
+                'product_id' => Product::all()->random()->id,
+                'image' => 'imagee3.jpg',
+                'created_at' => Carbon::now(),
+            ],
+            [
+                'product_id' => Product::all()->random()->id,
+                'image' => 'imagee3.jpg',
+                'created_at' => Carbon::now(),
+            ],
         ]);
     }
 }
