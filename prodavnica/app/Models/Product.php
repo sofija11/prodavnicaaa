@@ -21,7 +21,9 @@ class Product extends Model {
     ];
 
     public function category() {
-        return $this->belongsTo(Category::class);
+        //kako bi se prikazali svi proizvodi i nakon obrisane kategorije, da se ne bi kaskadno obrisali,
+        //mogle je i tako u migraciji da se doda kaskadno brisanje
+        return $this->belongsTo(Category::class)->withTrashed();
     }
 
     public function photos() {

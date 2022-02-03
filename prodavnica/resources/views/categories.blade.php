@@ -14,11 +14,20 @@
         @csrf
         @method('POST')
         <div class="form-group">
-            <input type = "text" name = "category" placeholder = "Category name *" class = "form-control">
+            <input type = "text" name = "category" value = "{{ old('category') }}" placeholder = "Category name *" class = "form-control">
         </div>
         <div class="form-group">
             <button type = "submit" class = "btn btn-primary"> INSERT </button>
         </div>
+        @if ($errors->any())
+                <div class="alert alert-primary">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+        @endif
     </form>
 @endif
     <table class="categories_table" class="display">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Providers\CategoryService;
@@ -42,7 +44,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $product_name = $request->input('product_name');
         $code = $request->input('code');
@@ -56,21 +58,26 @@ class ProductController extends Controller
         $product->description = $description;
         $product->price = $price;
         $product->category_id = $category;
-        $product->save();
-        $id_new_product = $product->id;
-
-        foreach ($request->file('images') as $imagefile) {
-            $image = new Photo();
-            $date = date_create();
-            $time = date_format($date, 'YmdHis');
-            $imageName = $time . '-' . $imagefile->getClientOriginalName();
-            $imagefile->move(base_path() . '/public/uploads/', $imageName);
-            $image->image = $imageName;
-            $image->product_id = $id_new_product;
-            $image->save();
+        
+        if ($request->file('images') !== null ) {
+            $product->save();
+            $id_new_product = $product->id;
+            foreach ($request->file('images') as $imagefile) {
+                $image = new Photo();
+                $date = date_create();
+                $time = date_format($date, 'YmdHis');
+                $imageName = $time . '-' . $imagefile->getClientOriginalName();
+                $imagefile->move(base_path() . '/public/uploads/', $imageName);
+                $image->image = $imageName;
+                $image->product_id = $id_new_product;
+                $image->save();
+            }
+            return redirect()->back()->with('message', 'Succesful added new product!');
+        } else {
+            // ne radi validacija laravelova za multiple input file
+            return redirect()->back()->with('message', 'You must choose photos!')->withInput();
         }
-
-        return redirect()->back();
+        
     }
 
     /**
@@ -104,7 +111,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
         $product = Product::findOrFail($id);
         $product_name_new = $request->input('product_name_edit');
@@ -114,7 +121,7 @@ class ProductController extends Controller
         $category_new = $request->input('categories_edit');
         $id_product = $product->id;
 
-        $product->name =  $product_name_new;
+        $product->name = $product_name_new;
         $product->code = $code_new;
         $product->description = $description_new;
         $product->price = $price_new;

@@ -12,8 +12,3 @@
     @yield('css')
 </head>
 <body>
-@if (session()->has('user'))
-    <form action = "{{ route('logout') }}">
-        <button type="submit" class="btn btn-primary float-right"> LOGOUT </button>
-    </form>
-@endif

@@ -20,8 +20,8 @@
             <input type = "text" name = "price_edit" value = "{{ $product->price }}" placeholder = "Price *" class = "form-control">
         </div>
         <div class="form-group">
-            <select name = "categories_edit" class ="categories form-control">
-                <option value = "{{ $product->category->id }}" selected > {{ $product->category->name }} </option>
+            <select id = "categories_edit"  name = "categories_edit" class ="categories form-control">
+                <option name = "category_edit_opt" value = "{{ $product->category->id }}" selected > {{ $product->category->name }} </option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -37,5 +37,19 @@
         <div class="form-group">
             <button type = "submit" class = "btn btn-primary"> UPDATE </button>
         </div>
+        @if(session()->has('message'))
+            <div class="alert alert-primary">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-primary">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </form>
 @endsection

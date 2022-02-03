@@ -1,3 +1,21 @@
 body {
     padding:20px;
 }
+
+.menu {
+    list-style-type: none;
+    display: flex;
+}
+
+.menu__list {
+    margin-left: 40px;
+}
+
+.menu__list--link {
+    text-decoration: none;
+}
+
+.menu__list--link:hover, .menu__list--link:active {
+    color:#4169e1;
+    text-decoration: none;
+}

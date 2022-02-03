@@ -14,19 +14,19 @@
         @csrf
         @method('POST')
         <div class="form-group">
-            <input type = "text" name = "product_name" placeholder = "Product name *" class = "form-control">
+            <input type = "text" name = "product_name" value = "{{ old('product_name') }}" placeholder = "Product name *" class = "form-control">
         </div>
         <div class="form-group">
-            <input type = "text" name = "code" placeholder = "Code *" class = "form-control">
+            <input type = "text" name = "code" value = "{{ old('code') }}"placeholder = "Code *" class = "form-control">
         </div>
         <div class="form-group">
-            <input type = "text" name = "description" placeholder = "Description *" class = "form-control">
+            <input type = "text" name = "description" value = "{{ old('description') }}" placeholder = "Description *" class = "form-control">
         </div>
         <div class="form-group">
-            <input type = "text" name = "price" placeholder = "Price *" class = "form-control">
+            <input type = "text" name = "price" value = "{{ old('price') }}" placeholder = "Price *" class = "form-control">
         </div>
         <div class="form-group">
-            <select name = "categories" class ="categories form-control">
+            <select name = "categories" class ="categories form-control" value = "{{ old('categories') }}">
                 <option value = "0" selected disabled> Choose category *</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -34,11 +34,25 @@
             </select>
         </div>
         <div class="form-group">
-            <input type="file" name="images[]" multiple="true" class = "form-control">
+            <input type="file" name="images[]" value = "{{ old('images[]') }}" multiple="true" class = "form-control">
         </div>
         <div class="form-group">
             <button type = "submit" class = "btn btn-primary"> INSERT </button>
         </div>
+        @if(session()->has('message'))
+            <div class="alert alert-primary">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-primary">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </form>
 @endif
     <table class="products_table table-hover" class="display">
