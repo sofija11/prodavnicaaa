@@ -11,4 +11,12 @@ class UserController extends Controller
         $users = UserService::getAllUsers();
         return view('users', ['users' => $users]);
     }
+
+    public function registerOrLogin() {
+        if (auth()->user() === null) {
+            return view('auth.register');
+        } else {
+            return route('categories.index');
+        }
+    }
 }

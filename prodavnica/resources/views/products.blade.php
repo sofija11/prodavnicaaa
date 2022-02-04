@@ -76,7 +76,7 @@
         </thead>
         <tbody>
             @foreach($products as $product) 
-                <tr>
+                <tr class = "product_row--{{ $product->id }}">
                     <td> {{ $product->id }} </td>
                     <td> {{ $product->name }} </td>
                     <td> {{ $product->code }} </td>

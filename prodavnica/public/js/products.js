@@ -19,7 +19,7 @@ $(document).ready(function(){
              },
              url: "/products/" + id,
              success: function (data) {
-                 
+                 $('.product_row--' + id).remove();
              } 
          });
      })

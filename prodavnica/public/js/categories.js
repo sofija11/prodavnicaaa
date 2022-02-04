@@ -19,7 +19,7 @@ $(document).ready(function(){
             },
             url: "/categories/" + id,
             success: function (data) {
-                
+                $('.category_row--' + id).remove();
             } 
         });
     })

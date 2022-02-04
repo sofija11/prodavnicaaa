@@ -1,9 +1,16 @@
-@if (session()->has('user'))
-    <form action = "{{ route('logout') }}">
-        <button type="submit" class="btn btn-primary float-right"> LOGOUT </button>
-    </form>
+@if (auth()->user())
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+<button class="btn btn-dark  float-right">
+    <x-jet-dropdown-link href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                    this.closest('form').submit();">
+        {{ __('Log Out') }}
+    </x-jet-dropdown-link>
+</button>
+</form>
     <ul class = "menu">
-        @if (session()->get('user')->role_id === 1)
+        @if (auth()->user()->role_id === 1)
             <li class ="menu__list">
                <a class ="menu__list--link" href = "{{ route('users')}}"> Users </a>
             </li>

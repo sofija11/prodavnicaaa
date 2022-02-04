@@ -28,8 +28,10 @@
             </select>
         </div>
             @foreach($product->photos as $photo)
-                <img src="{{ '../../uploads/'. $photo->image}}"/> 
+            <div class = "photo--{{$photo->id}}">
+                <img  src="{{ '../../uploads/'. $photo->image}}"/> 
                  <a class = "text-primary photo_edit" data-id = " {{$photo->id}} " value=""> Obrisi </a>
+            </div>
             @endforeach
         <div class="form-group">
             <input type="file" name="images_edit[]" multiple="true" class = "form-control">

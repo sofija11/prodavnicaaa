@@ -16,8 +16,9 @@ class isLoged
      */
     public function handle(Request $request, Closure $next)
     {
-        $session = session()->get('user');
-        if (session()->has('user')) {
+        
+        $user = auth()->user();
+        if ($user !== null) {
             return $next($request);
         } else {
             abort(403, "Unauthorized action.");

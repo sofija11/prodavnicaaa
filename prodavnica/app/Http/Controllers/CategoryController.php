@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = CategoryService::getAllCategories();
-        return view('categories', ['categories' => $categories, 'session' => session()->get('user')]);
+        return view('categories', ['categories' => $categories, 'session' => auth()->user() ]);
         
     }
 

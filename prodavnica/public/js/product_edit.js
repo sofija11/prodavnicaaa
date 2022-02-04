@@ -17,7 +17,7 @@ $(document).ready(function(){
              },
              url: "/photo_delete/" + id,
              success: function (data) {
-                 
+                $(".photo--" + id).remove();
              } 
          });
      })

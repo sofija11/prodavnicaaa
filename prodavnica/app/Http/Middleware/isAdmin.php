@@ -16,8 +16,8 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $session = session()->get('user');
-        if (session()->has('user') && $session->role_id === 1) {
+        $user = auth()->user();
+        if ($user !== null && $user->role_id === 1) {
             return $next($request);
         } else {
             abort(403, "Unauthorized action.");

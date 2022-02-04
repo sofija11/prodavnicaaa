@@ -23,7 +23,7 @@ class ProductController extends Controller
         $categories = CategoryService::getAllCategories();
         return view('products', [
             'products' => $products,
-            'session' => session()->get('user'),
+            'session' => auth()->user(),
             'categories' => $categories,
         ]);
     }

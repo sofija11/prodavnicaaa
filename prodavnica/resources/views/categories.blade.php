@@ -47,7 +47,7 @@
         </thead>
         <tbody>
             @foreach($categories as $category) 
-                <tr>
+                <tr class = "category_row--{{ $category->id }}">
                     <td> {{ $category->id}} </td>
                     <td> {{ $category->name}} </td>
                     <th> {{ date('d/m/Y', strtotime($category->created_at)) }} </th>

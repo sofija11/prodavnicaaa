@@ -19,10 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 //login
-Route::get('/', [AuthController::class, 'index']);
-Route::get('/loginPage', [AuthController::class, 'index']);
-Route::post('/login', [AuthController::class, 'loginUser'])->name('loginUser');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/', function () {
+    return view('auth.register');
+});
 
 //CRUD CATEGORIES AND PRODUCTS
 Route::resource('/categories', CategoryController::class)->middleware('is_loged');
@@ -35,3 +34,7 @@ Route::group(['middleware' => 'is_admin'], function()
     Route::resource('/categories', CategoryController::class,  ['except' => ['index']]);
     Route::resource('/products', ProductController::class, ['except' => ['index']]);
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
