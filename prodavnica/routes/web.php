@@ -35,6 +35,4 @@ Route::group(['middleware' => 'is_admin'], function()
     Route::resource('/products', ProductController::class, ['except' => ['index']]);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',[ProductController::class, 'index'] )->name('dashboard');
